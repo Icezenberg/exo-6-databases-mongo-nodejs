@@ -88,5 +88,23 @@ app.post("/addata", function (req, res) {
     });
 });
 
-
-
+app.get("/personne/:name", function (req, res) {
+    var mon_resultat = {};
+    nom = req.params.name;
+    console.log(nom);
+    //
+    MongoClient.connect(url, function (err, database) {
+        if (err) throw err;
+        var dbo = database.db("Adama");
+        dbo.collection("personnages").find({name:nom}).toArray(function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.send(result);
+            database.close();
+        });
+    });
+    
+    
+    //
+    // res.send(mon_resultat);
+});
