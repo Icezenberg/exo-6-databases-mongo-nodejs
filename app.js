@@ -88,6 +88,7 @@ app.post("/addata", function (req, res) {
     });
 });
 
+// route peremettant de modifier une entree de la bdd
 app.get("/personne/:name", function (req, res) {
     var mon_resultat = {};
     nom = req.params.name;
